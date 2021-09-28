@@ -152,10 +152,12 @@ ps_setfont($ps, $psfont, 12.0);
 	$x = 0;
 	$y = 625;
 	begin_example_box($ps, LEFT_BORDER+(EXAMPLE_BOX_WIDTH+30)*($x++), $y, "Gif image", $psfont);
-	$psimage = ps_open_image_file($ps, "gif", "debian.gif", NULL, 0);
-	ps_place_image($ps, $psimage, 25, 10, 2.0);
+	var_dump("=====", $gif = imagecreatefromgif("debian.gif"));
+	var_dump($psimage = ps_open_memory_image($ps, $gif), "======");
+//	$psimage = ps_open_image_file($ps, "gif", "debian.gif", NULL, 0);
+	ps_place_image($ps, $psimage, 50, 10, 2.0);
 	end_example_box($ps);
-
+/*
 	begin_example_box($ps, LEFT_BORDER+(EXAMPLE_BOX_WIDTH+30)*($x++), $y, "Gif image with transparency", $psfont);
 	$psimage = ps_open_image_file($ps, "gif", "debian-transparent.gif", NULL, 0);
 	ps_place_image($ps, $psimage, 25, 10, 2.0);
@@ -165,7 +167,7 @@ ps_setfont($ps, $psfont, 12.0);
 	$psimage = ps_open_image_file($ps, "gif", "interlaced.gif", NULL, 0);
 	ps_place_image($ps, $psimage, 10, 10, 0.65);
 	end_example_box($ps);
-
+*/
 	$x = 0;
 	$y = 405;
 	begin_example_box($ps, LEFT_BORDER+(EXAMPLE_BOX_WIDTH+30)*($x++), $y, "Tiff image", $psfont);
